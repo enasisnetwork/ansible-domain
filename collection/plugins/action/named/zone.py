@@ -8,11 +8,12 @@ is permitted, for more information consult the project license file.
 
 
 from typing import Annotated
-from typing import Optional
+from typing import Any
 
 from encommon.types import BaseModel
 
 from pydantic import Field
+from pydantic import field_validator
 
 
 
@@ -28,7 +29,26 @@ class NamedZoneParams(BaseModel, extra='forbid'):
               min_length=1)]
 
     forward: Annotated[
-        Optional[list[str]],
-        Field(None,
+        list[str],
+        Field(...,
               description='Specific forwarders for recursion',
               min_length=1)]
+
+
+    @field_validator(
+        'forward',
+        mode='before')
+    @classmethod
+    def parse_forward(
+        # NOCVR
+        cls,
+        value: Any,  # noqa: ANN401
+    ) -> Any:  # noqa: ANN401
+        """
+        Perform advanced validation on the parameters provided.
+        """
+
+        if isinstance(value, str):
+            return [value]
+
+        return value

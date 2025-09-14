@@ -13,6 +13,7 @@ is permitted, for more information consult the project license file.
 
 
 from typing import Annotated
+from typing import Any
 from typing import Optional
 
 from ansible.plugins.action import ActionBase  # type: ignore
@@ -22,6 +23,7 @@ from encommon.types import DictStrAny
 from encommon.types import sort_dict
 
 from pydantic import Field
+from pydantic import field_validator
 
 from .horizon import NamedHorizonParams
 
@@ -45,9 +47,70 @@ class RoleParams(BaseModel, extra='forbid'):
               min_length=1)]
 
     horizon: Annotated[
-        Optional[dict[str, NamedHorizonParams]],
+        Optional[list[NamedHorizonParams]],
         Field(None,
               description='Configuraiton for split horizon')]
+
+
+    @field_validator(
+        'forward',
+        mode='before')
+    @classmethod
+    def parse_forward(
+        # NOCVR
+        cls,
+        value: Any,  # noqa: ANN401
+    ) -> Any:  # noqa: ANN401
+        """
+        Perform advanced validation on the parameters provided.
+        """
+
+        if isinstance(value, str):
+            return [value]
+
+        return value
+
+
+    @field_validator(
+        'horizon',
+        mode='before')
+    @classmethod
+    def parse_horizon(
+        # NOCVR
+        cls,
+        value: Any,  # noqa: ANN401
+    ) -> Any:  # noqa: ANN401
+        """
+        Perform advanced validation on the parameters provided.
+        """
+
+        if (isinstance(value, list)
+                or value is None):
+            return value
+
+        model = NamedHorizonParams
+
+        returned: list[NamedHorizonParams] = []
+
+
+        assert isinstance(value, dict)
+
+        items = value.items()
+
+        for key, value in items:
+
+            value = dict(value)
+            name = value.get('name')
+
+            if name is None:
+                value['name'] = key
+
+            item = model(**value)
+
+            returned.append(item)
+
+
+        return returned
 
 
 

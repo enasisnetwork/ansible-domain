@@ -1,0 +1,49 @@
+options {
+{% if ansible_facts.os_family == 'OpenBSD' %}
+  directory "/tmp";
+{% endif %}
+
+{% if named_forward %}
+  forwarders { {{ named_forward | join("; ") }}; };
+{% endif %}
+
+  version "";
+
+  listen-on    { any; };
+  listen-on-v6 { any; };
+
+  empty-zones-enable yes;
+};
+
+
+
+{% if named_access %}
+{%   for name, access in named_access.items() %}
+acl {{ name }} { {{ access | join ("; ") }}; };
+{%   endfor %}
+{% endif %}
+
+
+
+{% if named_horizon %}
+{%   for horizon in named_horizon %}
+view {{ horizon.name }} {
+{%     if horizon.access %}
+  match-clients { {{ horizon.access | join("; ") }}; };
+  allow-query { {{ horizon.access | join("; ") }}; };
+  allow-transfer { none; };
+  allow-update { none; };
+  recursion {{ "yes" if horizon.recurse else "no" }};
+{%     endif %}
+{%     if horizon.zones %}
+{%       for zone in horizon.zones %}
+  zone "{{ zone.name }}." {
+    type forward;
+    forward only;
+    forwarders { {{ zone.forward | join ("; ") }}; };
+  };
+{%       endfor %}
+{%     endif %}
+};
+{%   endfor %}
+{% endif %}

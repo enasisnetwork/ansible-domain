@@ -46,6 +46,50 @@
 - name: Include downstream tasks within roles
 
   ansible.builtin.include_tasks: >-
+    package.yml
+
+  tags: install
+
+
+
+- name: Include downstream tasks within roles
+
+  ansible.builtin.include_tasks: >-
+    config.yml
+
+  tags:
+    - install
+    - configure
+
+
+
+- name: Include downstream tasks within roles
+
+  ansible.builtin.include_tasks: >-
+    service.yml
+
+  tags: install
+
+
+
+- name: Include downstream tasks within roles
+
+  ansible.builtin.include_tasks: >-
+    state.yml
+
+  tags:
+    - state-restarted
+    - state-stopped
+    - state-started
+
+
+
+
+
+
+- name: Include downstream tasks within roles
+
+  ansible.builtin.include_tasks: >-
     overview.yml
 
   tags: overview
