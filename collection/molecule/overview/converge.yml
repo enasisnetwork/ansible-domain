@@ -1,0 +1,21 @@
+---
+
+
+
+- name: Include roles for playbook operations
+  hosts: all
+  tasks:
+
+    - name: Include downstream tasks within roles
+      ansible.builtin.include_role:
+        name: enasisnetwork.domain.named
+        tasks_from: params
+      vars:
+        named_forward:
+          - 8.8.8.8
+          - 4.2.2.2
+
+    - name: Include downstream tasks within roles
+      ansible.builtin.include_role:
+        name: enasisnetwork.domain.named
+        tasks_from: overview

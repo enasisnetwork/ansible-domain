@@ -1,0 +1,9 @@
+---
+
+
+
+collections:
+
+  - name: enasisnetwork.domain
+    src: collection
+    type: file
