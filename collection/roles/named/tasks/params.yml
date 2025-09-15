@@ -1,0 +1,58 @@
+---
+# Functions and routines associated with Enasis Network Orchestrations.
+
+# This file is part of Enasis Network software eco-system. Distribution
+# is permitted, for more information consult the project license file.
+
+
+
+
+
+
+- name: Declare relevant playbook variables
+  # Important force parsing with Jinja2
+  # NOTE Remember to update the README file
+
+  ansible.builtin.set_fact:
+
+    named_forward: >-
+      {{ named_forward | default(omit) }}
+    named_access: >-
+      {{ named_access | default(omit) }}
+    named_horizon: >-
+      {{ named_horizon | default(omit) }}
+
+  tags: always
+
+
+
+
+
+
+- name: Validate role variables using Pydantic
+
+  enasisnetwork.domain.named.params:
+    prefix: named_
+
+  register: pbvalidate
+
+  tags: always
+
+
+
+
+
+
+- name: Declare relevant playbook variables
+  # Required to retain child null value
+
+  ansible.builtin.set_fact:
+
+    named_forward: >-
+      {{ pbvalidate.params.forward }}
+    named_access: >-
+      {{ pbvalidate.params.access }}
+    named_horizon: >-
+      {{ pbvalidate.params.horizon }}
+
+  tags: always

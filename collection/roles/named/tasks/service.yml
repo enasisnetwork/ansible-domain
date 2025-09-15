@@ -1,0 +1,23 @@
+---
+# Functions and routines associated with Enasis Network Orchestrations.
+
+# This file is part of Enasis Network software eco-system. Distribution
+# is permitted, for more information consult the project license file.
+
+
+
+
+
+
+- name: Enable the configured system service
+
+  ansible.builtin.service:
+    name: isc_named
+    enabled: true
+
+  become: true
+
+  when:
+    - ansible_facts.os_family == 'OpenBSD'
+
+  tags: always
