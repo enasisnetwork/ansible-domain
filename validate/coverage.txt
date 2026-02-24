@@ -1,0 +1,14 @@
+Name                                           Stmts   Miss  Cover
+------------------------------------------------------------------
+collection/__init__.py                             0      0   100%
+collection/plugins/__init__.py                     0      0   100%
+collection/plugins/action/__init__.py              0      0   100%
+collection/plugins/action/named/__init__.py        0      0   100%
+collection/plugins/action/named/horizon.py        12      0   100%
+collection/plugins/action/named/params.py         15      0   100%
+collection/plugins/action/named/zone.py            8      0   100%
+collection/tests/__init__.py                       0      0   100%
+collection/tests/integration/__init__.py           2      0   100%
+collection/tests/integration/test_default.py      15      0   100%
+------------------------------------------------------------------
+TOTAL                                             52      0   100%
