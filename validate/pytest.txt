@@ -3,18 +3,18 @@
 ============================= test session starts ==============================
 platform linux -- Python 3.12.13, pytest-9.0.3, pluggy-1.6.0 -- /home/runner/work/ansible-domain/ansible-domain/main/.venv-package/bin/python3
 cachedir: .pytest_cache
-Using --randomly-seed=3481454859
-ansible: 2.20.4
+Using --randomly-seed=2062509664
+ansible: 2.20.5
 rootdir: /home/runner/work/ansible-domain/ansible-domain/main
 configfile: setup.cfg
-plugins: cov-7.1.0, mypy-1.0.1, xdist-3.8.0, clarity-1.0.1, randomly-4.0.1, ansible-26.4.0, sphinx-0.7.1
+plugins: randomly-4.1.0, cov-7.1.0, mypy-1.0.1, xdist-3.8.0, clarity-1.0.1, ansible-26.4.0, sphinx-0.7.1
 created: 4/4 workers
 4 workers [1 item]
 
 scheduling tests via LoadScheduling
 
 collection/tests/integration/test_default.py::test_default[collection-overview] 
-[gw1] [100%] PASSED collection/tests/integration/test_default.py::test_default[collection-overview] 
+[gw0] [100%] PASSED collection/tests/integration/test_default.py::test_default[collection-overview] 
 
 ================================ tests coverage ================================
 _______________ coverage: platform linux, python 3.12.13-final-0 _______________
@@ -33,7 +33,7 @@ collection/tests/integration/__init__.py           2      0   100%
 collection/tests/integration/test_default.py      15      0   100%
 ------------------------------------------------------------------
 TOTAL                                             52      0   100%
-============================== 1 passed in 47.26s ==============================
+============================== 1 passed in 43.32s ==============================
     DONE
   ● Write coveragepy output to htmlcov..
     DONE
