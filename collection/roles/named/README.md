@@ -38,6 +38,11 @@ ansible-playbook \
 - `named_forward` Default forwarders for recursion
 - `named_access` Horizon restriction access list
 - `named_horizon` Configuraiton for split horizon
+    - Expects `list[dict]` or `dict[str, dict]`
+    - `name` Proper name for the DNS view
+    - `access` Horizon restriction access list
+    - `recurse` Whether recursion is permitted
+    - `zones` Specific DNS zone parameters
 
 Check out the parameter model on
 [GitHub](https://github.com/enasisnetwork/ansible-domain/blob/main/collection/plugins/action/named/params.py)
