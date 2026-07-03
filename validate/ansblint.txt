@@ -1,3 +1,26 @@
 >>> make ansblint
   ● Executing ansible-lint on project..
-    DONE
+syntax-check[specific]: A playbook must be a list of plays, got a <class 'ansible.module_utils._internal._datatag._AnsibleTaggedDict'> instead: /home/runner/work/ansible-domain/ansible-domain/main/collection/molecule/overview/require.yml
+molecule/overview/require.yml:5:1
+
+syntax-check[specific]: The role 'enasisnetwork.domain.named' was not found in: /home/runner/work/ansible-domain/ansible-domain/main/collection/playbooks/roles:/home/runner/work/ansible-domain/ansible-domain/main/collection/roles:/home/runner/.ansible/roles:/usr/share/ansible/roles:/etc/ansible/roles:/home/runner/work/ansible-domain/ansible-domain/main/collection/playbooks
+playbooks/named.yml:24:7
+
+fqcn[deep]: Deep plugins directory is discouraged. Move 'plugins/action/named/__init__.py' directly under 'plugins/action' folder. (warning)
+plugins/action/named/__init__.py:1
+
+fqcn[deep]: Deep plugins directory is discouraged. Move 'plugins/action/named/horizon.py' directly under 'plugins/action' folder. (warning)
+plugins/action/named/horizon.py:1
+
+fqcn[deep]: Deep plugins directory is discouraged. Move 'plugins/action/named/params.py' directly under 'plugins/action' folder. (warning)
+plugins/action/named/params.py:1
+
+fqcn[deep]: Deep plugins directory is discouraged. Move 'plugins/action/named/zone.py' directly under 'plugins/action' folder. (warning)
+plugins/action/named/zone.py:1
+
+risky-file-permissions: File permissions unset or incorrect.
+roles/named/tasks/config.yml:12 Task/Handler: Template the service configuration file
+
+var-naming[no-role-prefix]: Variables names from within roles should use named_ as a prefix. (register: pbvalidate)
+roles/named/tasks/params.yml:32:13 Task/Handler: Validate role variables using Pydantic
+
