@@ -1,3 +1,491 @@
 >>> make ruff
   ● Executing ruff in collection..
-    DONE
+I001 [*] Import block is un-sorted or un-formatted
+  --> collection/plugins/action/named/horizon.py:10:1
+   |
+10 | / from typing import Annotated
+11 | | from typing import Any
+12 | | from typing import Optional
+13 | |
+14 | | from encommon.types import BaseModel
+15 | |
+16 | | from pydantic import Field
+17 | | from pydantic import field_validator
+18 | |
+19 | | from .zone import NamedZoneParams
+   | |_________________________________^
+   |
+help: Organize imports
+   |
+9  |
+   - from typing import Annotated
+   - from typing import Any
+   - from typing import Optional
+10 + from typing import Annotated, Any, Optional
+11 |
+12 | from encommon.types import BaseModel
+13 + from pydantic import Field, field_validator
+14 |
+   - from pydantic import Field
+   - from pydantic import field_validator
+   -
+15 | from .zone import NamedZoneParams
+   -
+16 |
+   |
+
+UP045 [*] Use `X | None` for type annotations
+  --> collection/plugins/action/named/horizon.py:35:9
+   |
+34 |     access: Annotated[
+35 |         Optional[list[str]],
+   |         ^^^^^^^^^^^^^^^^^^^
+36 |         Field(None,
+37 |               description='Horizon restriction access list',
+   |
+help: Convert to `X | None`
+   |
+34 |     access: Annotated[
+   -         Optional[list[str]],
+35 +         list[str] | None,
+36 |         Field(None,
+   |
+
+UP045 [*] Use `X | None` for type annotations
+  --> collection/plugins/action/named/horizon.py:46:9
+   |
+45 |     zones: Annotated[
+46 |         Optional[list[NamedZoneParams]],
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+47 |         Field(None,
+48 |               description='Specific DNS zone parameters')]
+   |
+help: Convert to `X | None`
+   |
+45 |     zones: Annotated[
+   -         Optional[list[NamedZoneParams]],
+46 +         list[NamedZoneParams] | None,
+47 |         Field(None,
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/horizon.py:58:22
+   |
+56 |         # NOCVR
+57 |         cls,
+58 |         value: Any,  # noqa: ANN401
+   |                      ^^^^^^^^^^^^^^
+59 |     ) -> Any:  # noqa: ANN401
+60 |         """
+   |
+help: Remove unused `noqa` directive
+   |
+57 |         cls,
+   -         value: Any,  # noqa: ANN401
+58 +         value: Any,
+59 |     ) -> Any:  # noqa: ANN401
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/horizon.py:59:16
+   |
+57 |         cls,
+58 |         value: Any,  # noqa: ANN401
+59 |     ) -> Any:  # noqa: ANN401
+   |                ^^^^^^^^^^^^^^
+60 |         """
+61 |         Perform advanced validation on the parameters provided.
+   |
+help: Remove unused `noqa` directive
+   |
+58 |         value: Any,  # noqa: ANN401
+   -     ) -> Any:  # noqa: ANN401
+59 +     ) -> Any:
+60 |         """
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/horizon.py:77:22
+   |
+75 |         # NOCVR
+76 |         cls,
+77 |         value: Any,  # noqa: ANN401
+   |                      ^^^^^^^^^^^^^^
+78 |     ) -> Any:  # noqa: ANN401
+79 |         """
+   |
+help: Remove unused `noqa` directive
+   |
+76 |         cls,
+   -         value: Any,  # noqa: ANN401
+77 +         value: Any,
+78 |     ) -> Any:  # noqa: ANN401
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/horizon.py:78:16
+   |
+76 |         cls,
+77 |         value: Any,  # noqa: ANN401
+78 |     ) -> Any:  # noqa: ANN401
+   |                ^^^^^^^^^^^^^^
+79 |         """
+80 |         Perform advanced validation on the parameters provided.
+   |
+help: Remove unused `noqa` directive
+   |
+77 |         value: Any,  # noqa: ANN401
+   -     ) -> Any:  # noqa: ANN401
+78 +     ) -> Any:
+79 |         """
+   |
+
+PLR1704 Redefining argument with the local name `value`
+  --> collection/plugins/action/named/horizon.py:96:18
+   |
+94 |         items = value.items()
+95 |
+96 |         for key, value in items:
+   |                  ^^^^^
+97 |
+98 |             value = dict(value)
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> collection/plugins/action/named/params.py:15:1
+   |
+15 | / from typing import Annotated
+16 | | from typing import Any
+17 | | from typing import Optional
+18 | |
+19 | | from ansible.plugins.action import ActionBase  # type: ignore
+20 | |
+21 | | from encommon.types import BaseModel
+22 | | from encommon.types import DictStrAny
+23 | | from encommon.types import sort_dict
+24 | |
+25 | | from pydantic import Field
+26 | | from pydantic import field_validator
+27 | |
+28 | | from .horizon import NamedHorizonParams
+   | |_______________________________________^
+   |
+help: Organize imports
+   |
+14 |
+   - from typing import Annotated
+   - from typing import Any
+   - from typing import Optional
+15 + from typing import Annotated, Any, Optional
+16 |
+17 | from ansible.plugins.action import ActionBase  # type: ignore
+18 + from encommon.types import BaseModel, DictStrAny, sort_dict
+19 + from pydantic import Field, field_validator
+20 |
+   - from encommon.types import BaseModel
+   - from encommon.types import DictStrAny
+   - from encommon.types import sort_dict
+   -
+   - from pydantic import Field
+   - from pydantic import field_validator
+   -
+21 | from .horizon import NamedHorizonParams
+   -
+22 |
+   |
+
+UP045 [*] Use `X | None` for type annotations
+  --> collection/plugins/action/named/params.py:38:9
+   |
+37 |     forward: Annotated[
+38 |         Optional[list[str]],
+   |         ^^^^^^^^^^^^^^^^^^^
+39 |         Field(None,
+40 |               description='Default forwarders for recursion',
+   |
+help: Convert to `X | None`
+   |
+37 |     forward: Annotated[
+   -         Optional[list[str]],
+38 +         list[str] | None,
+39 |         Field(None,
+   |
+
+UP045 [*] Use `X | None` for type annotations
+  --> collection/plugins/action/named/params.py:44:9
+   |
+43 |     access: Annotated[
+44 |         Optional[dict[str, list[str]]],
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+45 |         Field(None,
+46 |               description='Horizon restriction access list',
+   |
+help: Convert to `X | None`
+   |
+43 |     access: Annotated[
+   -         Optional[dict[str, list[str]]],
+44 +         dict[str, list[str]] | None,
+45 |         Field(None,
+   |
+
+UP045 [*] Use `X | None` for type annotations
+  --> collection/plugins/action/named/params.py:50:9
+   |
+49 |     horizon: Annotated[
+50 |         Optional[list[NamedHorizonParams]],
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+51 |         Field(None,
+52 |               description='Configuraiton for split horizon')]
+   |
+help: Convert to `X | None`
+   |
+49 |     horizon: Annotated[
+   -         Optional[list[NamedHorizonParams]],
+50 +         list[NamedHorizonParams] | None,
+51 |         Field(None,
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/params.py:62:22
+   |
+60 |         # NOCVR
+61 |         cls,
+62 |         value: Any,  # noqa: ANN401
+   |                      ^^^^^^^^^^^^^^
+63 |     ) -> Any:  # noqa: ANN401
+64 |         """
+   |
+help: Remove unused `noqa` directive
+   |
+61 |         cls,
+   -         value: Any,  # noqa: ANN401
+62 +         value: Any,
+63 |     ) -> Any:  # noqa: ANN401
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/params.py:63:16
+   |
+61 |         cls,
+62 |         value: Any,  # noqa: ANN401
+63 |     ) -> Any:  # noqa: ANN401
+   |                ^^^^^^^^^^^^^^
+64 |         """
+65 |         Perform advanced validation on the parameters provided.
+   |
+help: Remove unused `noqa` directive
+   |
+62 |         value: Any,  # noqa: ANN401
+   -     ) -> Any:  # noqa: ANN401
+63 +     ) -> Any:
+64 |         """
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/params.py:81:22
+   |
+79 |         # NOCVR
+80 |         cls,
+81 |         value: Any,  # noqa: ANN401
+   |                      ^^^^^^^^^^^^^^
+82 |     ) -> Any:  # noqa: ANN401
+83 |         """
+   |
+help: Remove unused `noqa` directive
+   |
+80 |         cls,
+   -         value: Any,  # noqa: ANN401
+81 +         value: Any,
+82 |     ) -> Any:  # noqa: ANN401
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/params.py:82:16
+   |
+80 |         cls,
+81 |         value: Any,  # noqa: ANN401
+82 |     ) -> Any:  # noqa: ANN401
+   |                ^^^^^^^^^^^^^^
+83 |         """
+84 |         Perform advanced validation on the parameters provided.
+   |
+help: Remove unused `noqa` directive
+   |
+81 |         value: Any,  # noqa: ANN401
+   -     ) -> Any:  # noqa: ANN401
+82 +     ) -> Any:
+83 |         """
+   |
+
+PLR1704 Redefining argument with the local name `value`
+   --> collection/plugins/action/named/params.py:100:18
+    |
+ 98 |         items = value.items()
+ 99 |
+100 |         for key, value in items:
+    |                  ^^^^^
+101 |
+102 |             value = dict(value)
+    |
+
+UP045 [*] Use `X | None` for type annotations
+   --> collection/plugins/action/named/params.py:126:14
+    |
+124 |         # NOCVR
+125 |         self,
+126 |         tmp: Optional[str] = None,
+    |              ^^^^^^^^^^^^^
+127 |         task_vars: Optional[DictStrAny] = None,
+128 |     ) -> DictStrAny:
+    |
+help: Convert to `X | None`
+    |
+125 |         self,
+    -         tmp: Optional[str] = None,
+126 +         tmp: str | None = None,
+127 |         task_vars: Optional[DictStrAny] = None,
+    |
+
+UP045 [*] Use `X | None` for type annotations
+   --> collection/plugins/action/named/params.py:127:20
+    |
+125 |         self,
+126 |         tmp: Optional[str] = None,
+127 |         task_vars: Optional[DictStrAny] = None,
+    |                    ^^^^^^^^^^^^^^^^^^^^
+128 |     ) -> DictStrAny:
+129 |         """
+    |
+help: Convert to `X | None`
+    |
+126 |         tmp: Optional[str] = None,
+    -         task_vars: Optional[DictStrAny] = None,
+127 +         task_vars: DictStrAny | None = None,
+128 |     ) -> DictStrAny:
+    |
+
+BLE001 Do not catch blind exception: `Exception`
+   --> collection/plugins/action/named/params.py:166:16
+    |
+166 |         except Exception as reason:
+    |                ^^^^^^^^^
+167 |             result |= {
+168 |                 'failed': True,
+    |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> collection/plugins/action/named/zone.py:10:1
+   |
+10 | / from typing import Annotated
+11 | | from typing import Any
+12 | |
+13 | | from encommon.types import BaseModel
+14 | |
+15 | | from pydantic import Field
+16 | | from pydantic import field_validator
+   | |____________________________________^
+   |
+help: Organize imports
+   |
+9  |
+   - from typing import Annotated
+   - from typing import Any
+10 + from typing import Annotated, Any
+11 |
+12 | from encommon.types import BaseModel
+   -
+   - from pydantic import Field
+   - from pydantic import field_validator
+   -
+13 + from pydantic import Field, field_validator
+14 |
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/zone.py:45:22
+   |
+43 |         # NOCVR
+44 |         cls,
+45 |         value: Any,  # noqa: ANN401
+   |                      ^^^^^^^^^^^^^^
+46 |     ) -> Any:  # noqa: ANN401
+47 |         """
+   |
+help: Remove unused `noqa` directive
+   |
+44 |         cls,
+   -         value: Any,  # noqa: ANN401
+45 +         value: Any,
+46 |     ) -> Any:  # noqa: ANN401
+   |
+
+RUF100 [*] Unused `noqa` directive (non-enabled: `ANN401`)
+  --> collection/plugins/action/named/zone.py:46:16
+   |
+44 |         cls,
+45 |         value: Any,  # noqa: ANN401
+46 |     ) -> Any:  # noqa: ANN401
+   |                ^^^^^^^^^^^^^^
+47 |         """
+48 |         Perform advanced validation on the parameters provided.
+   |
+help: Remove unused `noqa` directive
+   |
+45 |         value: Any,  # noqa: ANN401
+   -     ) -> Any:  # noqa: ANN401
+46 +     ) -> Any:
+47 |         """
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> collection/tests/integration/__init__.py:10:1
+   |
+10 | from pathlib import Path
+   | ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+help: Organize imports
+   |
+11 |
+   -
+   -
+12 | SAMPLES = (
+   |
+
+I001 [*] Import block is un-sorted or un-formatted
+  --> collection/tests/integration/test_default.py:10:1
+   |
+10 | / from os import environ
+11 | | from pathlib import Path
+12 | | from sys import executable
+13 | |
+14 | | from _pytest.capture import CaptureFixture
+15 | |
+16 | | from encommon.utils.stdout import strip_ansi
+17 | |
+18 | | from pytest_ansible.molecule import MoleculeScenario
+19 | |
+20 | | from . import SAMPLES
+   | |_____________________^
+   |
+help: Organize imports
+   |
+14 | from _pytest.capture import CaptureFixture
+   -
+15 | from encommon.utils.stdout import strip_ansi
+   -
+16 | from pytest_ansible.molecule import MoleculeScenario
+17 |
+18 | from . import SAMPLES
+   -
+19 |
+   |
+
+RUF059 Unpacked variable `stderr` is never used
+  --> collection/tests/integration/test_default.py:44:13
+   |
+44 |     stdout, stderr = (
+   |             ^^^^^^
+45 |         capfd.readouterr())
+   |
+help: Prefix it with an underscore or any other dummy variable pattern
+
