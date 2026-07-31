@@ -14,7 +14,6 @@ I001 [*] Import block is un-sorted or un-formatted
 18 | |
 19 | | from .zone import NamedZoneParams
    | |_________________________________^
-   |
 help: Organize imports
    |
 9  |
@@ -169,7 +168,6 @@ I001 [*] Import block is un-sorted or un-formatted
 27 | |
 28 | | from .horizon import NamedHorizonParams
    | |_______________________________________^
-   |
 help: Organize imports
    |
 14 |
@@ -384,7 +382,6 @@ I001 [*] Import block is un-sorted or un-formatted
 15 | | from pydantic import Field
 16 | | from pydantic import field_validator
    | |____________________________________^
-   |
 help: Organize imports
    |
 9  |
@@ -442,7 +439,6 @@ I001 [*] Import block is un-sorted or un-formatted
    |
 10 | from pathlib import Path
    | ^^^^^^^^^^^^^^^^^^^^^^^^
-   |
 help: Organize imports
    |
 11 |
@@ -466,7 +462,6 @@ I001 [*] Import block is un-sorted or un-formatted
 19 | |
 20 | | from . import SAMPLES
    | |_____________________^
-   |
 help: Organize imports
    |
 14 | from _pytest.capture import CaptureFixture
